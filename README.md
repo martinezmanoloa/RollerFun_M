@@ -54,4 +54,4 @@ sudo docker exec -it php-fpm php bin/console doctrine:migrations:migrate
 
 Open you browser in URL: http://localhost
 
-:)
+Go to api/README.md Happy testing :)
