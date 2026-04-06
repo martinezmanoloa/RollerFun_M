@@ -44,7 +44,13 @@ sudo docker exec -it php-fpm composer install
 sudo docker exec -it php-fpm php bin/console doctrine:database:create --if-not-exists
 ```
 
-### 5. Show in browser
+### 5. Create DB
+
+```bash
+sudo docker exec -it php-fpm php bin/console doctrine:migrations:migrate
+```
+
+### 6. Show in browser
 
 Open you browser in URL: http://localhost
 
