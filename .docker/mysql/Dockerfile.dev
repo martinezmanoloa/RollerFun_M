@@ -1,0 +1,3 @@
+FROM mysql:8.4.8
+#RUN microdnf install -y iputils && microdnf clean all
+EXPOSE 3306

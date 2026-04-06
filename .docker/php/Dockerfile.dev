@@ -1,0 +1,43 @@
+FROM php:8.2.30-fpm-alpine3.23
+ARG TIMEZONE
+
+RUN apk update && apk add --no-cache \
+    bash \
+    git \
+    icu-dev \
+    libzip-dev \
+    mysql-client \
+    libjpeg-turbo-dev \
+    libpng-dev \
+    libxml2-dev \
+    freetype-dev \
+    gmp-dev \
+    $PHPIZE_DEPS \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) \
+    bcmath \
+    ctype \
+    gd \
+    gmp \
+    intl \
+    opcache \
+    pdo_mysql \
+    pcntl \
+    simplexml \
+    xml \
+    zip \
+    && pecl install pcov && docker-php-ext-enable pcov \
+    && ln -snf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime \
+    && echo "${TIMEZONE}" > /etc/timezone
+
+RUN git config --global --add safe.directory /var/www/html/api
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+RUN curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.alpine.sh' |  bash
+
+RUN apk update && apk add symfony-cli
+
+WORKDIR /var/www/html/api
+
+CMD ["php-fpm"]

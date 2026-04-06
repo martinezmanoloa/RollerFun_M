@@ -1,0 +1,9 @@
+:80 {
+    root * /var/www/html/api/public
+    php_fastcgi php-fpm:9000
+    file_server
+    
+    log {
+        output stdout
+    }
+}
