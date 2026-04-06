@@ -17,7 +17,11 @@ Follow these steps to set up the environment from scratch:
 Clone the repository and create your local environment variables file:
 
 ```bash
+# Docker
 cp .env.example .env
+
+# API
+cp api/.env.dev api/.env
 ```
 
 ### 2. Run dockers
