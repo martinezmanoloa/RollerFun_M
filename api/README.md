@@ -58,6 +58,13 @@ Remove a user from the database permanently.
 
 ---
 
+## Testing
+
+```bash
+sudo docker exec -it php-fpm bin/phpunit --coverage-text --coverage-html var/coverage
+```
+
+---
 ## 🛠️ Common Troubleshooting
 
 * **Invalid JSON:** Ensure your request header includes `Content-Type: application/json`.
